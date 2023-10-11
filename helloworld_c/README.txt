@@ -1,1 +1,2 @@
+helloworld程序。
 用于留存VSCdoe的C语言环境配置json文件。
