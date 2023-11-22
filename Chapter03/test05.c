@@ -9,6 +9,9 @@ int main()
 	scanf("a=%db=%d", &a, &b);
 	scanf("%f%e",&x, &y);
 	scanf("%c%c",&c1, &c2);
+	printf("a=%db=%d\n", a, b);
+	printf("%f%e\n",x, y);
+	printf("%c%c\n",c1,c2);
     system("pause");
 	return 0;
 }

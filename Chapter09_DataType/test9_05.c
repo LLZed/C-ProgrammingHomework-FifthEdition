@@ -4,7 +4,7 @@
 */  
 #include<stdio.h>
 #include<stdlib.h>
-#define N 3
+#define N 10
 
 //声明一个结构体类型struct student
 struct student{
