@@ -44,3 +44,52 @@ int main()
 	return 0;
 }
 
+/*
+//法二
+int main(){
+	float integral(float (*)(float),float,float, int);		//integral函数声明
+	float fsin(float);		//对fsin函数声明
+	float fcos(float);		//对fcos函数声明
+	float fexp(float);		//对fexp函数声明
+	float a1,b1,a2,b2,a3,b3,c,(*p)(float);
+	int n=20;		// 区间划分个数
+	printf("input a1,b1:");		//输入求sin（x）定积分的下限和上限
+	scanf("%f,%f",&a1,&b1);
+	printf("input a2,b2:");		//输入求cos（x）定积分的下限和上限
+	scanf("%f,%f",&a2,&b2);
+	printf("input a3,b3:");		//输入求exp（x）定积分的下限和上限
+	scanf("%f,%f",&a3,&b3);
+	p=fsin;			//使p指向fsin函数
+	c=integral(p,a1,b1,n);	//求出sin(x)的定积分
+	printf("The integral of sin(x) is:%f\n",c);
+	p=fcos;			//使p指向fcos函数
+	c=integral(p,a2,b2,n);	//求出cos(x)的定积分
+	printf("The integral of cos(x) is:%f\n",c);
+	p=fexp;			//使p指向fexp函数
+	c=integral(p,a3,b3,n);	//求出exp(x)的定积分
+	printf("The integral of exp(x) is:%f\n",c);
+	system("pause");
+	return 0;
+}
+//下面是矩形法求定积分函数
+float integral(float (*p)(float ),float a,float b, int n){
+	int i;
+	float x,h,s=0;
+	x=a;
+	for(i=1;i<=n;i++)
+	{
+		x=x+h;
+		s=s+(*p)(x)*h;
+	}
+	return s;
+}
+float fsin(float x){
+	return sin(x);
+}
+float fcos(float x){
+	return cos(x);
+}
+float fexp(float x){
+	return exp(x);
+}
+*/
