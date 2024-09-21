@@ -16,33 +16,45 @@
 int main()
 {
     float score[N][M];
-    void input(float (*p)[M]);           //输入函数声明
+    char number[4][10];     //存放学号
+    void inputscore(float (*p)[M],char (*num)[10]);           //输入函数声明
+    void inputcourse(char (*p)[20]);           //输入函数声明
     void first_aver(float (*p)[M]);    //第1门成绩平均分函数声明
-    void fail(float (*p)[M]);         //找不及格函数声明
-    void fun(float (*p)[M]);     //找平均成绩在90分以上或全部课程成绩在85分以上的学生函数声明
+    void fail(float (*p)[M],char (*num)[10]);         //找不及格函数声明
+    void fun(float (*p)[M],char (*num)[10]);     //找平均成绩在90分以上或全部课程成绩在85分以上的学生函数声明
+    char course[5][20]; //存放课程名
 
-    input(score);            //函数调用
-    printf("\nNO.     cour1      cour2      cour3      cour4      cour5\n");//输出课程成绩
+    inputcourse(course);            //函数调用
+    inputscore(score,number);            //函数调用
+    printf("\nNumber.      %s        %s         %s          %s        %s\n",course[0],course[1],course[2],course[3],course[4]);//输出课程成绩
     for(int i=0;i<N;i++)            //4个学生
     {
-        printf("\nNO.%2d ", i + 1);        //输出是第几个学生
+        printf("\n  %s  ", number[i]);        //输出学号
 		for (int j = 0; j < M; j++)             //5门课程
-			printf("%6.2f",score[i][j]);    //输出每个学生的每门课程成绩
+			printf("   %6.2f   ",score[i][j]);    //输出每个学生的每门课程成绩
 	}
     printf("\n------------------------------------------------------\n");
     first_aver(score);     //函数调用
-    fail(score);        //函数调用
-    fun(score);
+    fail(score,number);        //函数调用
+    fun(score,number);
 
     system("pause");
     return 0;
 }
-
+//输入课程
+void inputcourse(char (*p)[20]){
+    int i;
+    printf("输入课程：");
+    for(i=0;i<M;i++)
+        scanf("%s",p[i]);    
+}
 //输入成绩
-void input(float (*p)[M])
+void inputscore(float (*p)[M],char (*num)[10])
 {
     for(int i=0;i<N;i++)
-    {
+    {   
+        printf("请输入学生%d的学号:\n",i+1);
+        scanf("%s",num[i]);
         printf("请输入学生%d的成绩:\n",i+1);
         for (int j = 0; j < M; j++)
             scanf("%f",(*(p+i)+j));      
@@ -60,7 +72,7 @@ void first_aver(float (*p)[M])
     printf("%6.2f\n",sum/N);
 }
 //找不及格函数声明
-void fail(float (*p)[M]) 
+void fail(float (*p)[M],char (*num)[10]) 
 {
     int i,j;
     float sum=0.0;
@@ -73,19 +85,19 @@ void fail(float (*p)[M])
             sum=sum+*(*(p+i)+j);
         }
         if(flag>2){
-            printf("有两门以上课程不及格的学生:\n");
-            printf("%d\n",i+1);
-            printf("chengji:\n");
+            printf("\n有两门以上课程不及格的学生:\n");
+            printf("%s\n",num[i]);
+            printf("chengji:");
             for(int k=0;k<M;k++)
                 printf("%.2f ",*(*(p+i)+k));
-            printf("%d\n",sum/M);
+            printf("\n平均成绩:%6.2f",sum/M);
         }
         flag=0;
         sum=0.0;
     }
 }
 //找平均成绩在90分以上或全部课程成绩在85分以上的学生函数声明
-void fun(float (*p)[M])
+void fun(float (*p)[M],char (*num)[10])
 {
     int i,j;
     float sum=0.0;
@@ -97,9 +109,10 @@ void fun(float (*p)[M])
                 flag++;
             sum=sum+*(*(p+i)+j);
         }
-        if(flag==M || sum>90)
-            printf("%d同学是平均成绩在90分以上或全部课程成绩在85分以上的学生\n",i+1);
+        if(flag==M || (sum/M)>90)
+            printf("\n%s同学是平均成绩在90分以上或全部课程成绩在85分以上的学生\n",num[i]);
         flag=0;
         sum=0.0;
     }
 }
+
