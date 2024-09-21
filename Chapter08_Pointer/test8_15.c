@@ -74,7 +74,7 @@ void fail(float (*p)[M])
         }
         if(flag>2){
             printf("有两门以上课程不及格的学生:\n");
-            printf("%d\n",i);
+            printf("%d\n",i+1);
             printf("chengji:\n");
             for(int k=0;k<M;k++)
                 printf("%.2f ",*(*(p+i)+k));
@@ -97,8 +97,8 @@ void fun(float (*p)[M])
                 flag++;
             sum=sum+*(*(p+i)+j);
         }
-        if(flag==M && sum>90)
-            printf("%d同学是平均成绩在90分以上或全部课程成绩在85分以上的学生\n",i);
+        if(flag==M || sum>90)
+            printf("%d同学是平均成绩在90分以上或全部课程成绩在85分以上的学生\n",i+1);
         flag=0;
         sum=0.0;
     }
