@@ -48,3 +48,47 @@ int fun(char *p1,int *p2){
     }
     return k;
 }
+
+
+//方法二
+int main(){
+    char str[N];                    //定义字符数组存放输入的字符串
+    void fun(char *p);       //函数声明，函数的形参是字符型指针和整型指针，返回值是返回整数的个数
+    printf("enter string:\n");
+    gets(str);
+    printf("string:%s\n",str);
+    fun(str);                 //调用函数，实参是字符数组和整型数组首地址
+    system("pause");
+    return 0;
+}
+void fun(char *p){
+    int i=0,flag=0,sum=0;         //flag是首次读到数字标记位,flag=0表示当前首次读到数字
+    int a[20],count=0;            //定义一个整型数组存放整数,count是整数的个数
+    while(1){           //当当前指向的字符不是空字符时
+        //当前指向的字符是数字时
+        if(*p>='0' && *p<='9'){
+            if(flag==0){ 
+                count++;        //如果是第一次读到数字,count+1
+            } 
+            sum=sum * 10 + (*p - '0');
+            flag=1;             //下一个元素再继续读到是数字时记为不是第一次读到数字
+            
+        }
+        //当最后一个字符是数字时，再往下就是'\0'了，需要把最后一个整数再赋值
+        if(*p == '\0'){
+            a[i]=sum;
+            break;
+        }
+        //当前指向的字符不是数字且已经读到过数字时
+        if((*p < '0' || *p > '9' ) && flag==1){  //这里或判断要加上括号，不然在出现连续的非数字时会出错，因为|| 和&&优先级不同
+            a[i++]=sum;         //存放整数到数组元素
+            sum=0;              //赋0重新计算下一个整数
+            flag=0;             //读到数字标记位赋0
+        }
+        p++;                    //指向下一个字符
+    }
+    printf("number of the string are:\n");
+    for(int j=0;j<count;j++)
+        printf("%d ",a[j]);
+    printf("\n共有%d个整数。\n",count);
+}
