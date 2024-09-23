@@ -37,3 +37,26 @@ char* new(int n){
 void Free(char * p){
     free(p);//释放开辟的空间
 }
+
+/*
+#include <stdio.h>
+#define NEWSIZE 100        //指定开辟存储区的最大容量
+char newbuf[NEWSIZE];
+char *newp=newbuf;
+
+char *new(int n){
+    if(newp+n <= newbuf+NEWSIZE)        //开辟区位超过newbuf数组的大小
+    {
+        newp+=n;        //指向存储区的末尾
+        return(newp-n);     //返回指向存储区的开始位置的指针
+    }
+    else
+        return(NULL);   //当存储区不够分配时返回空指针
+}
+
+void free(char *p){
+    if(p >= newbuf && p < newbuf+NEWSIZE)
+        newp=p;         
+}
+//这样下次再开辟新区域时就从newp指向的字节开始分配，相当于释放了此段空间，使其可再分配作其他用途
+*/
