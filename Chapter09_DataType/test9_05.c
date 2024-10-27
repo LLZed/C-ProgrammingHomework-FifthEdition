@@ -13,6 +13,7 @@ struct student{
     float score[3];    
 }Stu[N],*p;      //定义一个struct student类型的结构体数组，有10个struct student类型的结构体元素，同时定义一个结构体指针
 float ave[N];       //定义一个float类型的全局数组
+float average=0;       //定义一个float类型的全局存储变量存储总平均分
 int high=0;         //定义一个int类型的全局变量
 int main()
 {
@@ -28,16 +29,16 @@ int main()
     system("pause");
     return 0;
 }
-//输入
+//输入函数
 void input(struct student student[])
 {
     int i,j;
     for(i=0;i<N;i++)
     {
         printf("input No.%d student's num:\n",i+1);
-        scanf("%s",&student[i].num);
+        scanf("%s",&student[i].num);    //输入学号
         printf("input No.%d student's name:\n",i+1);
-        scanf("%s",&student[i].name);
+        scanf("%s",&student[i].name);   //输入姓名
         for(j=0;j<3;j++)
         {
             printf("input student's score %d:\n",j+1);
@@ -50,18 +51,24 @@ void input(struct student student[])
 void print(struct student student[])
 {
     int i,j;
+    printf("N0. Name score1 scoore2 score3  aver\n");
     for(i=0;i<N;i++)
     {
-        printf("%s,%s",student[i].num,student[i].name);
+        printf("%5s%10s",student[i].num,student[i].name);
         for(j=0;j<3;j++)
-            printf(" %-5.2f ",student[i].score[j]);
-        printf(" %-5.2f ",ave[i]);
+            printf(" %9.2f ",student[i].score[j]);
+        printf(" %8.2f ",ave[i]);
         printf("\n");
     }
-    printf("%s,%s",student[high].num,student[high].name);
+    //输出总平均分
+    printf("average = %5.2f \n",average);
+    
+    //输出最高平均分学生的数据
+    printf("The highest score is:%s,%s",student[high].num,student[high].name);
+    printf("His scores are:");
     for(j=0;j<3;j++)
-        printf(" %-5.2f ",student[high].score[j]);
-    printf(" %-5.2f ",ave[high]);
+        printf(" %6.2f ",student[high].score[j]);
+    printf(" %5.2f ",ave[high]);
     printf("\n");
 }
 //平均分
@@ -74,7 +81,9 @@ void aver(struct student student[])
         for(j=0;j<3;j++)
             sum=sum+student[i].score[j];
         ave[i]=sum/3.0;
+        average+=ave[i];
     }
+    average/=N; //计算总平均分
 }
 //最高分学生数据
 void highest(float ave[N])
