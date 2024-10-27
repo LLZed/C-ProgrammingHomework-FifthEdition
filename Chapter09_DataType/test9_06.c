@@ -17,10 +17,12 @@ int main()
 //按顺序排号,1~13编号 
     for(int i=0;i<N;i++)
     {
-        link[i].number=i+1;       //从1到13编号   
-        link[i].next=&link[i+1];   //使结点指向下一个结点，把结点连接起来                
+        link[i].number=i+1;       //从1到13编号
+		if(i == N-1)
+			link[N-1].next=link;          //使最后一个结点指向第1个结点，形成环链，即最后一个回到第一个结点
+		else  
+        	link[i].next=&link[i+1];   //使结点指向下一个结点，把结点连接起来                
     }
-    link[N-1].next=link;          //使最后一个结点指向第1个结点，形成环链，即最后一个回到第一个结点  
 
     int count=N;
     int i = 1;
@@ -50,6 +52,7 @@ int main()
 		if (head->number != 0)
 		{
 			printf("留到最后的是 %d \n", head->number);
+			break;
 		}
 	}
 	system("pause");
