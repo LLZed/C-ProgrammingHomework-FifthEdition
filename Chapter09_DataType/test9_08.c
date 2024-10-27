@@ -83,8 +83,8 @@ int main()
     struct Student *stud;					                //定义一个结构体指针变量；
     
     long number;
-	pt2=pt=creat();								             //调用函数，函数返回所创建的链表的第1个结点的地址，用三个指向
-	while(pt!=NULL)							                //依次输出各结点的数据
+	pt2=pt=creat();						//调用函数，函数返回所创建的链表的第1个结点的地址
+	while(pt!=NULL)							           //依次输出各结点的数据
 	{
 		printf("\nnum:%ld\nscore:%5.1f\n",pt->num,pt->score);
 		pt=pt->next;                                        //使结点指向下一个结点
@@ -92,7 +92,7 @@ int main()
 
     printf("\n");
     printf("\nwho is student you want to insert:\n");
-    stud=(struct Student * )malloc(LEN);	                //开辟一个结构体类型的新单元,并使p1和p2指向新单元
+    stud=(struct Student * )malloc(LEN);	                //开辟一个结构体类型的新单元
     scanf("%ld,%f",&stud->num,&stud->score);		        // 输入要插入的学生的学号和成绩
     insert(pt2,stud);
 	while(pt2!=NULL)							                //依次输出各结点的数据
