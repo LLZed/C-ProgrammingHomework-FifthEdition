@@ -94,7 +94,7 @@ int main()
     printf("\nwho is student you want to insert:\n");
     stud=(struct Student * )malloc(LEN);	                //开辟一个结构体类型的新单元
     scanf("%ld,%f",&stud->num,&stud->score);		        // 输入要插入的学生的学号和成绩
-    insert(pt2,stud);
+    pt2 = insert(pt2,stud);
 	while(pt2!=NULL)							                //依次输出各结点的数据
 	{
 		printf("\nnum:%ld\nscore:%5.1f\n",pt2->num,pt2->score);
