@@ -5,10 +5,11 @@
 #define LEN sizeof(struct Student)		    //定义LEN的值为结构体的长度
 
 struct Student							    //定义一个结构体类型，有三个成员
-	{long num;							    //学号（长整型）
-	 float score;						    //成绩（浮点型）
-	 struct Student * next;				    //指向结构体类型数据的指针变量成员next（指针类型的成员，它指向结构体类型数据，就是它所在的结构体类型）
-	};
+{
+    	long num;							    //学号（长整型）
+	float score;						    //成绩（浮点型）
+	struct Student * next;				    //指向结构体类型数据的指针变量成员next（指针类型的成员，它指向结构体类型数据，就是它所在的结构体类型）
+};
     
 int n;									    //全局变量n
 
@@ -27,7 +28,8 @@ struct Student *creat(void)				    //定义函数，此函数返回一个指向�
 		n=n+1;								//n为结点1的标记
 		if(n==1)							//当n为1时表示此时是结点1，要把结点的地址给到head，使head指向结点1
 			head=p1;						//把p1的值赋给head，即使head指向新开辟的结点，p1所指向的新开辟的结点就成为链表中第1个结点
-		else p2->next=p1;					//将p1的值赋给p2->next
+		else 
+            p2->next=p1;					//将p1的值赋给p2->next
 		p2=p1;								//在连接好两个结点后，使p2也指向新结点，为下次连接做准备
 		p1=(struct Student *)malloc(LEN);	//开辟动态存储区，把起始地址赋给p1
 		scanf("%ld,%f",&p1->num,&p1->score);	// 输入其他学生的学号和成绩
