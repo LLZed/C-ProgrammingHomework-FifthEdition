@@ -70,7 +70,9 @@ struct Student * del(struct Student *p,long num)
     	printf("delete:%ld\n",num);
     	n=n-1;									//结点数-1
     }
-    else printf("%ld not been found!\n",num);  //找不到该结点
+    else 
+		printf("%ld not been found!\n",num);  //找不到该结点
+	return p;
 }
 
 //写一个main函数调用这个creat函数
@@ -87,7 +89,7 @@ int main()
                                                      
     printf("what is num you want delete:\n");
     scanf("%ld",&number);									//输入想要删除的数据
-    del(pt1,number);										//调用函数删除数据
+    pt1 = del(pt1,number);									//调用函数删除数据
     
 	while(pt1!=NULL)							            //依次输出删除后各结点的数据
 	{
@@ -98,4 +100,3 @@ int main()
     system("pause");
 	return 0;
 }
-
