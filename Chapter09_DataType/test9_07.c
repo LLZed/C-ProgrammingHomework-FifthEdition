@@ -6,15 +6,18 @@
 
 */
 
+*/
+
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>		//包含malloc函数，system函数等
 #define LEN sizeof(struct Student)		    //定义LEN的值为结构体的长度
 
 struct Student							    //定义一个结构体类型，有三个成员
-	{long num;							    //学号（长整型）
-	 float score;						    //成绩（浮点型）
-	 struct Student * next;				    //指向结构体类型数据的指针变量成员next（指针类型的成员，它指向结构体类型数据，就是它所在的结构体类型）
-	};
+{
+	long num;							    //学号（长整型）
+ 	float score;						    //成绩（浮点型）
+ 	struct Student * next;				    //指向结构体类型数据的指针变量成员next（指针类型的成员，它指向结构体类型数据，就是它所在的结构体类型）
+};
     
 int n;									    //全局变量n
 
@@ -22,13 +25,13 @@ int n;									    //全局变量n
 struct Student *creat(void)				    //定义函数，此函数返回一个指向链表头的指针
 {
 	struct Student * head;				    //指向结构体类型数据的指针变量head，它可以指向结构体变量也可以指向结构体数组中的元素
-	struct Student * p1,*p2;			    //指向结构体类型数据的指针变量p1和p2
+	struct Student * p1,* p2;			    //指向结构体类型数据的指针变量p1和p2
 	n=0;
 	p1=p2=(struct Student * )malloc(LEN);	//开辟一个结构体类型的新单元,并使p1和p2指向新单元
 	printf("请输入学生学号和成绩（逗号隔开）：\n(若输入0,0表示结束)\n");
 	scanf("%ld,%f",&p1->num,&p1->score);	// 输入第1个学生的学号和成绩
 	head=NULL;								//此时head的值为空，不指向任何地址；
-	while(p1->num!=0)						//当输入的学号不为零时,则输入的是第1个结点的数据
+	while(p1->num != 0)						//当输入的学号不为零时,则输入的是第1个结点的数据
 	{
 		n=n+1;								//n为结点1的标记
 		if(n==1)							//当n为1时表示此时是结点1，要把结点的地址给到head，使head指向结点1
@@ -95,3 +98,4 @@ int main()
     system("pause");
 	return 0;
 }
+
