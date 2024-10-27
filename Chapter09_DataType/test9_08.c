@@ -1,4 +1,4 @@
-//8.写一个函数insert,用来向一个动态链表插入结点
+//8.写一个函数insert,用来向一个动态链表插入结点，要求按照学号顺序插入
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,7 +57,7 @@ struct Student *insert(struct Student *p,struct Student *stud)
             p2=p1;                          //使p2指向刚才p1指向的结点
             p1=p1->next;					//p1后移一个结点，指向下一个结点
         }
-        if(p0->num <= p1->num)						//当p1的num成员等于要删除的num，找到了
+        if(p0->num <= p1->num)				
         {
             if(p1==p)						    //如果p1此时指向的是首结点										
                 p=p0->next;					    //插到首结点之前
