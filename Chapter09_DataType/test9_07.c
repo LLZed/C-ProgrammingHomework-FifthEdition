@@ -6,8 +6,6 @@
 
 */
 
-*/
-
 #include <stdio.h>
 #include <stdlib.h>		//包含malloc函数，system函数等
 #define LEN sizeof(struct Student)		    //定义LEN的值为结构体的长度
@@ -17,11 +15,34 @@ struct Student							    //定义一个结构体类型，有三个成员
 	long num;							    //学号（长整型）
  	float score;						    //成绩（浮点型）
  	struct Student * next;				    //指向结构体类型数据的指针变量成员next（指针类型的成员，它指向结构体类型数据，就是它所在的结构体类型）
-};
-    
+};   
 int n;									    //全局变量n
 
-//写一个creat函数创建动态链表
+//写一个main函数调用这个creat函数
+int main()
+{
+	//函数声明
+	struct Student *creat(void);							//创建链表函数
+	struct Student * del(struct Student *p,long num);		//删除结点函数
+	void print(struct Student *head);							//输出函数
+
+	struct Student *pt;					            //定义结构体指针变量
+    long number;
+	pt=creat();								        //调用函数，函数返回所创建的链表的第1个结点的地址，用两个指向
+	
+	print(pt);										//输出删除后各结点的数据
+                                                     
+    printf("what is num you want delete:\n");
+    scanf("%ld",&number);									//输入想要删除的数据
+    pt = del(pt,number);									//调用函数删除数据
+    
+	print(pt);									            //输出删除后各结点的数据
+	
+    system("pause");
+	return 0;
+}
+
+//creat函数创建动态链表
 struct Student *creat(void)				    //定义函数，此函数返回一个指向链表头的指针
 {
 	struct Student * head;				    //指向结构体类型数据的指针变量head，它可以指向结构体变量也可以指向结构体数组中的元素
@@ -46,7 +67,7 @@ struct Student *creat(void)				    //定义函数，此函数返回一个指向�
 	return head;							//返回链表头地址；
 }
 
-//写一个del函数删除链表中指定的结点,可以用学号作为要删除的结点的标志
+//del函数删除链表中指定的结点,可以用学号作为要删除的结点的标志
 struct Student * del(struct Student *p,long num)
 {
     struct Student *p1,*p2;			         //指向结构体类型数据的指针变量p1和p2
@@ -75,28 +96,14 @@ struct Student * del(struct Student *p,long num)
 	return p;
 }
 
-//写一个main函数调用这个creat函数
-int main()
-{
-	struct Student *pt,*pt1;					            //定义结构体指针变量；
-    long number;
-	pt1=pt=creat();								            //调用函数，函数返回所创建的链表的第1个结点的地址，用两个指向
-	while(pt!=NULL)							                //依次输出各结点的数据
-	{
-		printf("\nnum:%ld\nscore:%5.1f\n",pt->num,pt->score);
-		pt=pt->next;                                        //使结点指向下一个结点
-	}
-                                                     
-    printf("what is num you want delete:\n");
-    scanf("%ld",&number);									//输入想要删除的数据
-    pt1 = del(pt1,number);									//调用函数删除数据
-    
-	while(pt1!=NULL)							            //依次输出删除后各结点的数据
-	{
-		printf("\nnum:%ld\nscore:%5.1f\n",pt1->num,pt1->score);
-		pt1=pt1->next;
-	}
-
-    system("pause");
-	return 0;
+//输出链表函数
+void print(struct Student *head){
+	struct Student *p;
+	printf("\nNow these records are:\n");
+	p=head;
+	if(head != NULL)
+		do{
+			printf("%ld %5.1f\n", p -> num,p -> score);
+			p=p->next;
+		}while(p != NULL);
 }
