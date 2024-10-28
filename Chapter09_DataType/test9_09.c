@@ -133,7 +133,7 @@ struct Student *insert(struct Student *p,struct Student *stud)
         if(p0->num <= p1->num)				
         {
             if(p1==p)						//如果p1此时指向的是首结点										
-                p=p0->next;					//插到首结点之前
+                p=p0;						//插到首结点之前
             else 
                 p2->next=p0;			    //否则插到p2指向的结点之后
             p0->next=p1;                    //插好后再链接到p1
