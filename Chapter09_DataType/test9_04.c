@@ -30,13 +30,13 @@ void input(struct student student[])//参数是struct student结构体类型的�
     for(i=0;i<N;i++)
     {
         printf("input No.%d student's num:\n",i+1);
-        scanf("%s",&student5[i].num);
+        scanf("%s",&student[i].num);
         printf("input No.%d student's name:\n",i+1);
-        scanf("%s",&student5[i].name);
+        scanf("%s",&student[i].name);
         for(j=0;j<3;j++)
         {
             printf("input student's score %d:\n",j+1);
-            scanf("%f",&student5[i].score[j]);
+            scanf("%f",&student[i].score[j]);
         }
         printf("\n");
     }
@@ -48,9 +48,9 @@ void print(struct student student[])//参数是struct student结构体类型的�
     //遍历数组，输出数据
     for(i=0;i<N;i++)
     {
-        printf("%s,%s",student5[i].num,student5[i].name);
+        printf("%s,%s",student[i].num,student[i].name);
         for(j=0;j<3;j++)
-            printf(" %-5.2f ",student5[i].score[j]);
+            printf(" %-5.2f ",student[i].score[j]);
         printf("\n");
     }
 }
