@@ -18,7 +18,7 @@ struct Student							    //定义一个结构体类型，有三个成员
 };   
 int n;									    //全局变量n
 
-//写一个main函数调用这个creat函数
+//main函数
 int main()
 {
 	//函数声明
