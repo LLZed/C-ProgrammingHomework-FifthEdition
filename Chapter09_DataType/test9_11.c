@@ -5,87 +5,36 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
-typedef struct student			//定义一个结构体类型struct student，有三个成员，并重命名为student
+#define LENa 4
+#define LENb 5
+
+typedef struct student			//定义一个结构体类型struct student，有三个成员，并重命名为student,即student就表示struct student
 {
 	int num;					//学号
-	double grade;				//成绩
+	char name[10];				//姓名
 	struct student *next;		//结构体类型指针
-} student;
-student *del(student *a, student *b){
-	student *pre, *current, *head;		//定义struct student结构体类型的指针变量
-	head = a;
-
-	while (b != NULL)
-	{
-		//重置指针指向a链表的头部
-		pre = head;	//pre存放当前节点的地址，一开始时就是存放头部
-		current = head->next;	//current存放下一节点的地址
-		//a 链表当前节点的学号等于b链表当前节点的学号
-		//如果在头节点就是相同学号
-		if (pre->num == b->num)
-		{
-			pre->next = NULL;	
-			pre = current;
-			current = current->next;
-			//更新表头
-			head = pre;
-		}
-		//如果在头节点不是相同学号
-		else
-		{
-			while (pre->next != NULL)
-			{
-				if (current->num == b->num)
-				{
-					//找到就删除
-					pre->next = current->next;
-					break;
-				}
-				else
-				{
-					//否则继续遍历
-					pre = pre->next;
-					current = current->next;
-				}
-			}
-		}
-		b = b->next;
-	}
-	return head;
-}
-//输出链表函数
-void printList(student *root)
-{
-	printf("----\n");
-	int i = 0;
-	while (root != NULL)
-	{
-		printf("student %d -> %d -> %.2lf\n", i, root->num, root->grade);
-		root = root->next;	//让root指向下一节点
-		i++;
-	}
-}
+}student;
 
 int main()
 {
-	student a[3] = { { 1, 79 }, { 4, 36 }, { 5, 79 } };		//定义struct student结构体类型的数组a并赋初值
+	//函数声明
+	student *del(student *a, student *b);
+	void printList(student *head);
+
+	student a[LENa] = { { 101, "wang" }, { 102, "li" }, { 105, "zhang" },{106,"wei"} };		//定义struct student结构体类型的数组a并赋初值
 	//连接数组元素形成链表
-	for (int i = 0; i < 2; i++)
-	{
+	for (int i = 0; i < LENa-1; i++)	//因为下面是用到i+1，所以这里i的最大值小于LENa-1
 		a[i].next = &a[i + 1];
-	}
-	a[2].next = NULL;
+	a[LENa].next = NULL;
 
 	printf("链表a:\n");
 	printList(&a[0]);
 
-	student b[2] = { { 5, 38 }, { 4, 98 } };			//定义struct student结构体类型的数组b并赋初值
+	student b[LENb] = { { 103, "zhang" }, { 104, "ma" },{105,"chen"},{107,"guo"},{108,"liu"} };			//定义struct student结构体类型的数组b并赋初值
 	//连接数组元素形成链表
-	for (int i = 0; i < 1; i++)
-	{
+	for (int i = 0; i < LENb-1; i++)	//因为下面是用到i+1，所以这里i的最大值小于LENb-1
 		b[i].next = &b[i + 1];
-	}
-	b[1].next = NULL;
+	b[LENb].next = NULL;
 
 	printf("链表b:\n");
 	printList(&b[0]);
@@ -94,9 +43,63 @@ int main()
 	printf("删除之后：\n");
 	while (combine != NULL)
 	{
-		printf("%d -> %.2lf\n", combine->num, combine->grade);
+		printf("%d -> %s\n", combine->num, combine->name);
 		combine = combine->next;
 	}
 	system("pause");
 	return 0;
+}
+
+student *del(student *a, student *b){
+	student *head, *current, *follow;		//定义struct student结构体类型的指针变量,head指向头结点
+	head = a;				//头结点赋值
+	while (b != NULL)		//当没有比较到最后一个结点时
+	{
+		//重置指针指向a链表的头部
+		current = head;		//current存放当前节点的地址，一开始时就是存放头结点
+		follow = head->next;	//current存放下一节点的地址
+		//如果a链表当前节点的学号等于b链表当前节点的学号
+		//如果在头结点就是相同学号
+		if (current->num == b->num)
+		{
+			current->next = NULL;	
+			current = follow;
+			follow = follow->next;
+			//更新表头
+			head = current;
+		}
+		//如果在头节点不是相同学号
+		else
+		{
+			while (current->next != NULL)
+			{
+				if (follow->num == b->num)
+				{
+					//找到就删除
+					current->next = follow->next;
+					break;
+				}
+				else
+				{
+					//否则继续遍历链表a
+					current = current->next;
+					follow = follow->next;
+				}
+			}
+		}
+		b = b->next;
+	}
+	return head;
+}
+//输出链表函数
+void printList(student *head)
+{
+	printf("----\n");
+	int i = 0;
+	while (head != NULL)
+	{
+		printf("student %d -> %d -> %s\n", i+1, head->num, head->name);
+		head = head->next;	//让head指向下一节点
+		i++;
+	}
 }
