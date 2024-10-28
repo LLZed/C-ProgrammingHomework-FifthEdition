@@ -39,9 +39,9 @@ void print(struct student student[])            //定义一个print函数，用�
     int i,j;
     for(i=0;i<N;i++)
     {
-        printf("%s,%s",student5[i].num,student5[i].name);
+        printf("%s,%s",student[i].num,student[i].name);
         for(j=0;j<3;j++)
-            printf(" %-5.2f ",student5[i].score[j]);
+            printf(" %-5.2f ",student[i].score[j]);
         printf("\n");
     }
 }
