@@ -28,10 +28,10 @@ int main()
     void inputfile(char *filename,char* way,struct student *array,int n);
 
     readfile("test5File.txt","r",Stu,N);//以只读的方式打开文件test5File.txt,并且把文件数据读取到结构体数组中，要保证文件和程序文件在同一目录下
-    printf("num  name    score1 score2 score3  ave\n");
+    printf("num  name    score1 score2 score3  ave\n--------------------------------------\n");
     print(Stu,N);
     printf("按平均分排序后:\n");
-    printf("num  name    score1 score2 score3  ave\n");
+    printf("num  name    score1 score2 score3  ave\n--------------------------------------\n");
     Sort(Stu,N);
     print(Stu,N);
     inputfile("test6stud_sortFile.txt","w+",Stu,N);
