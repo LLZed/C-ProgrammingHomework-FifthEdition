@@ -84,7 +84,6 @@ void inputfile(char *filename,char* way,struct student *array,int n)
         system("pause");
         exit(0);
     } 
-    fprintf(fp,"num  name    score1   score2   score3  ave\n-----------------------------\n");
     int i,j;   
     for(i=0;i<n;i++)
     {
