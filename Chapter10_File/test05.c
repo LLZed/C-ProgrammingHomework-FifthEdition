@@ -24,7 +24,7 @@ int main()
     p=Stu;      //指针指向Stu结构体数组首地址
     input(p,N);
     aver(p,N);
-    printf("num  name    score1   score2   score3  ave\n---------------------------------\n");
+    printf("num  name    score1 score2 score3  ave\n--------------------------------------\n");
     print(p,N);
     inputfile("test5File.txt","w+",Stu,N);//以读写的方式打开文件test5File.txt,并且把长度为N的结构体数组写入文件
     system("pause");
