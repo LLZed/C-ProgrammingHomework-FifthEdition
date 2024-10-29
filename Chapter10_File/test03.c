@@ -29,14 +29,16 @@ int main(){
     }
     fclose(fp);         //用完关闭文件
     //检验是否成功写入文件
-    if((fp=fopen("test3.txt","r+"))==NULL)       //用只读的方式打开文件test
+    if((fp=fopen("test3.txt","r"))==NULL)       //用只读的方式打开文件test
         printf("-1");
     char *str;
     int n=strlen(s)+1;
+    free(s);
     str = malloc(n * sizeof(char));//没有为str分配内存空间。在之后的fgets(str,n,fp)中，由于str没有被初始化，它指向的内存位置是未知的，因此导致了段错误。
     fgets(str,n,fp);      
-    printf("%s",str);
+    printf("%s\n",str);
     fclose(fp);
+    free(str);                                //释放空间
 
     system("pause");
     return 0;
