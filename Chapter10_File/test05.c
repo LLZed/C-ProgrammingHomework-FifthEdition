@@ -24,7 +24,7 @@ int main()
     p=Stu;      //指针指向Stu结构体数组首地址
     input(p,N);
     aver(p,N);
-    printf("num  name    score1 score2 score3  ave\n");
+    printf("num  name    score1   score2   score3  ave\n---------------------------------\n");
     print(p,N);
     inputfile("test5File.txt","w+",Stu,N);//以读写的方式打开文件test5File.txt,并且把长度为N的结构体数组写入文件
     system("pause");
@@ -37,9 +37,9 @@ void input(struct student student[],int n)
     for(i=0;i<n;i++)
     {
         printf("input No.%d student's num:\n",i+1);
-        scanf("%s",&student[i].num);
+        scanf("%s",student[i].num);
         printf("input No.%d student's name:\n",i+1);
-        scanf("%s",&student[i].name);
+        scanf("%s",student[i].name);
         for(j=0;j<3;j++)
         {
             printf("input student's score %d:\n",j+1);
@@ -84,6 +84,7 @@ void inputfile(char *filename,char* way,struct student *array,int n)
         system("pause");
         exit(0);
     } 
+    fprintf(fp,"num  name    score1   score2   score3  ave\n-----------------------------\n");
     int i,j;   
     for(i=0;i<n;i++)
     {
